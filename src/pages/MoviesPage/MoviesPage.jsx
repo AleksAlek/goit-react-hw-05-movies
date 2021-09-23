@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
+import Notiflix from "notiflix";
 import { searchMovies } from "../../services/fetchApi";
 import { makeSlug } from "../../services/slug";
 import s from "./MoviesPage.module.css";
@@ -34,6 +35,12 @@ const MoviesPage = () => {
 
       setFoundMovies(results);
       setMovieToFind("");
+
+      if (results.length === 0) {
+        Notiflix.Notify.warning(
+          "No movies found! Please change your request and try again"
+        );
+      }
 
       history.push({
         ...location,

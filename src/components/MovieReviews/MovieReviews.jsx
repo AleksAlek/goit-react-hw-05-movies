@@ -32,9 +32,7 @@ const MovieReviews = ({ movieId }) => {
 
   return (
     <>
-      <div className="reviewsContainer">
-        We don't have any reviews for this movie
-      </div>
+      <div>We don't have any reviews for this movie</div>
     </>
   );
 };

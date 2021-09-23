@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getMovieCast } from "../../services/fetchApi";
+import s from "./MovieCast.module.css";
 
 const MovieCast = ({ movieId }) => {
   const [cast, setCast] = useState(null);
@@ -15,21 +16,23 @@ const MovieCast = ({ movieId }) => {
   }, [movieId]);
 
   return (
-    <div className="castContainer">
-      <ul className="castList">
+    <div>
+      <ul className={s.castList}>
         {cast &&
           cast.map(({ id, profile_path, original_name, character }) => (
-            <li key={id}>
+            <li key={id} className={s.castItem}>
               <img
                 src={
                   profile_path
                     ? `https://image.tmdb.org/t/p/w300${profile_path}`
-                    : "https://lockru.ru/image/no_image.png"
+                    : "https://pomogaetsrazu.ru/images/offers/2829219234.jpg"
                 }
                 alt={original_name}
               />
-              <p>{original_name}</p>
-              <p>Character: {character}</p>
+              <div className={s.itemDescr}>
+                <p className={s.personName}>{original_name}</p>
+                <p className={s.character}>Character: {character}</p>
+              </div>
             </li>
           ))}
       </ul>

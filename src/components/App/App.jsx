@@ -20,7 +20,13 @@ const App = () => {
 
       <Suspense
         fallback={
-          <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
+          <Loader
+            className={s.loader}
+            type="TailSpin"
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
         }
       >
         <Switch>

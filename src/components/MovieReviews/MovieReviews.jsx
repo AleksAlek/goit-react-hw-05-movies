@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getReviews } from "../../services/fetchApi";
+import s from "./MovieReviews.module.css";
 
 const MovieReviews = ({ movieId }) => {
   const [reviews, setReviews] = useState(null);
@@ -16,12 +17,12 @@ const MovieReviews = ({ movieId }) => {
 
   if (reviews) {
     return (
-      <div className="reviewsContainer">
+      <div>
         <ul>
           {reviews.map(({ id, author, content }) => (
-            <li key={id}>
+            <li key={id} className={s.reviewItem}>
               <h3>Author: {author}</h3>
-              <p>{content}</p>
+              <p className={s.reviewText}>{content}</p>
             </li>
           ))}
         </ul>

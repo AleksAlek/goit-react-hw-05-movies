@@ -1,7 +1,7 @@
 header {
   background-color: #1f1f1f;
 
-  height: 10vh;
+  min-height: 10vh;
 }
 
 .mainContainer {

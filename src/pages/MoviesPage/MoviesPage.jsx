@@ -29,15 +29,17 @@ const MoviesPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { results } = await searchMovies(movieToFind);
+    if (movieToFind.trim()) {
+      const { results } = await searchMovies(movieToFind);
 
-    setFoundMovies(results);
-    setMovieToFind("");
+      setFoundMovies(results);
+      setMovieToFind("");
 
-    history.push({
-      ...location,
-      search: `query=${movieToFind}`,
-    });
+      history.push({
+        ...location,
+        search: `query=${movieToFind}`,
+      });
+    }
   };
 
   return (

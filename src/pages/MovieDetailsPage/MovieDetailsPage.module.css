@@ -1,6 +1,6 @@
 .movieDetialsSection {
   padding: 40px 0;
-  height: 90vh;
+  min-height: 90vh;
   height: 100%;
 
   background-color: #e8e8e8;

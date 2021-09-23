@@ -5,19 +5,28 @@ import s from "./MovieCast.module.css";
 const MovieCast = ({ movieId }) => {
   const [cast, setCast] = useState(null);
 
+  const anchor = document.querySelector("#cast");
+
   useEffect(() => {
     const getCast = async () => {
       const { cast } = await getMovieCast(movieId);
 
       setCast(cast);
+
+      if (anchor) {
+        window.scrollTo({
+          top: anchor.offsetTop,
+          behavior: "smooth",
+        });
+      }
     };
 
     getCast();
-  }, [movieId]);
+  }, [movieId, anchor]);
 
   return (
     <div>
-      <ul className={s.castList}>
+      <ul className={s.castList} id="cast">
         {cast &&
           cast.map(({ id, profile_path, original_name, character }) => (
             <li key={id} className={s.castItem}>

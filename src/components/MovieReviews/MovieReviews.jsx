@@ -5,35 +5,42 @@ import s from "./MovieReviews.module.css";
 const MovieReviews = ({ movieId }) => {
   const [reviews, setReviews] = useState(null);
 
+  const anchor = document.querySelector("#reviews");
+
   useEffect(() => {
     const getCast = async () => {
       const { results } = await getReviews(movieId);
 
       setReviews(results);
+
+      if (anchor) {
+        window.scrollTo({
+          top: anchor.offsetTop,
+          behavior: "smooth",
+        });
+      }
     };
 
     getCast();
-  }, [movieId]);
-
-  if (reviews) {
-    return (
-      <div>
-        <ul>
-          {reviews.map(({ id, author, content }) => (
-            <li key={id} className={s.reviewItem}>
-              <h3>Author: {author}</h3>
-              <p className={s.reviewText}>{content}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  }, [movieId, anchor]);
 
   return (
-    <>
-      <div>We don't have any reviews for this movie</div>
-    </>
+    <div id="reviews">
+      {reviews && (
+        <ul>
+          {reviews ? (
+            reviews.map(({ id, author, content }) => (
+              <li key={id} className={s.reviewItem}>
+                <h3>Author: {author}</h3>
+                <p className={s.reviewText}>{content}</p>
+              </li>
+            ))
+          ) : (
+            <li>We don't have any reviews for this movie</li>
+          )}
+        </ul>
+      )}
+    </div>
   );
 };
 
